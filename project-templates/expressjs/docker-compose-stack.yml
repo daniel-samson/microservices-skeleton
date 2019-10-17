@@ -1,12 +1,12 @@
 version: "3"
 services:
-  microservice-hello:
-    image: microservice-hello_microservice-hello
+  project-name:
+    image: project-name_project-name
     networks:
       default:
       swarm_routing:
         aliases:
-          - microservice-hello.localtest.me
+          - project-name.localtest.me
     deploy:
       resources:
         reservations:

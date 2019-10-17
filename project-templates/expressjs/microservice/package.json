@@ -1,0 +1,19 @@
+{
+  "name": "expressjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run": "nodemon index.js",
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mocha": "^6.2.1",
+    "nodemon": "^1.19.4",
+    "should": "^13.2.3",
+    "supertest": "^4.0.2"
+  }
+}

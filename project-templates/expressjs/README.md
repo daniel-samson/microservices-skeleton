@@ -9,6 +9,12 @@ cd project-name
 source .env
 ```
 
+tools:
+resolve dependencies:
+```bash
+make tools
+```
+
 resolve dependencies:
 ```bash
 make deps
@@ -47,11 +53,7 @@ make coverage
 ```
 
 ### Dependencies
-Add your dependancies to the makefile
+Add your dependancies to the packages.json
 
-```Makefile
-deps:
-	go get github.com/gorilla/mux
-	go get github.com/shopspring/decimal
-	# add your dependencies here...
-```
+### Accessing Service
+You can access the service via: [http://{service-name}.localtest.me/](http://{service-name}.localtest.me/). See the docker-compose-stack.yml file inside the service for details.

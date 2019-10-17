@@ -50,6 +50,7 @@ read -p "Project Template [microservice-golang]?  " choice
 case $choice in
   "microservice-golang") NEW_PROJECT_TEMPLATE="$choice" ;;
   "storage") NEW_PROJECT_TEMPLATE="$choice" ;;
+  "expressjs") NEW_PROJECT_TEMPLATE="$choice" ;;
   "") NEW_PROJECT_TEMPLATE="microservice-golang" ;;
   *) get_project_template ;;
 esac;

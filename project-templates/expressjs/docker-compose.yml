@@ -1,0 +1,6 @@
+version: "3"
+services:
+  project-name:
+    build: .
+    container_name: project-name
+    env_file: .env
