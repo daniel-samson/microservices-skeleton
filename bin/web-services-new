@@ -46,7 +46,7 @@ function get_project_template {
 echo "Available templates:"
 ls -1 $PROJECT_PATH/project-templates/
 echo " "
-read -p "Project Template [microservice-golang]?  " choice
+read -p "Project Template [mux]?  " choice
 case $choice in
   "mux") NEW_PROJECT_TEMPLATE="$choice" ;;
   "storage") NEW_PROJECT_TEMPLATE="$choice" ;;
