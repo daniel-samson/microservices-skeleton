@@ -1,7 +1,7 @@
 Microservices Skeleton
 ====
 
-Sets un the development environment that is suited for microservice archietecture.
+Provide a set of scripts and templates to rapidly build a microservices application.
 
 
 ### Requirements:
