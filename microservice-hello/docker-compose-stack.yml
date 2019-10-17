@@ -1,0 +1,29 @@
+version: "3"
+services:
+  microservice-hello:
+    image: microservice-hello_microservice-hello
+    networks:
+      default:
+      swarm_routing:
+        aliases:
+          - microservice-hello.localtest.me
+    deploy:
+      resources:
+        reservations:
+          cpus: '0.05'
+          memory: 8M
+        limits:
+          memory: 8M
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 10
+
+networks:
+  default:
+    internal: true
+    driver: overlay
+  swarm_routing:
+    external: true

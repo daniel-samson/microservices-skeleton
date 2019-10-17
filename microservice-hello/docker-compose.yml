@@ -1,0 +1,6 @@
+version: "3"
+services:
+  microservice-hello:
+    build: .
+    container_name: microservice-hello
+    env_file: .env

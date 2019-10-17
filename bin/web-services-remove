@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+SCRIPT=$(readlink -f $0)
+SCRIPT_PATH=`dirname $SCRIPT`
+PROJECT_PATH=`dirname $SCRIPT_PATH`
+for D in `ls -d1 */`
+do
+     if [ "${D}" != "project-templates/" ]; then
+     	docker stack rm $(echo $D | sed 's:/*$::')
+     fi
+done
+

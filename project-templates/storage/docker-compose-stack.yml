@@ -1,0 +1,32 @@
+version: "3"
+services:
+  project-name:
+    image: minio/minio
+    networks:
+      default:
+      swarm_routing:
+        aliases:
+          - project-name.localtest.me
+    env_file: ./.env
+    environment:
+      MINIO_ACCESS_KEY: $STORAGE_ACCESS_KEY
+      MINIO_SECRET_KEY: $STORAGE_ACCESS_SECRET
+    volumes:
+      - project-name-data:/data
+    command: server /data
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 10
+
+networks:
+  default:
+    internal: true
+    driver: overlay
+  swarm_routing:
+    external: true
+volumes:
+  project-name-data:

@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  swarm-router:
+    image: flavioaiello/swarm-router:latest
+    environment:
+      - DEFAULT_BACKEND_PORTS=80 443 8000 8080 8443 9000
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "443:443"
+      - "8443:8443"
+      - "1111:1111"
+    networks:
+      - routing
+    healthcheck:
+      test: nc -w 7 -zvv 0.0.0.0 1111
+      interval: 30s
+      timeout: 30s
+      retries: 20
+    deploy:
+      resources:
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+        limits:
+          memory: 128M
+      mode: global
+      restart_policy:
+        condition: any
+
+networks:
+  routing:
+    driver: overlay
+    attachable: true

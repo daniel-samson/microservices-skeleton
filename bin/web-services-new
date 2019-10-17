@@ -1,0 +1,68 @@
+#!/bin/bash
+set -e
+SCRIPT=$(readlink -f $0)
+SCRIPT_PATH=`dirname $SCRIPT`
+PROJECT_PATH=`dirname $SCRIPT_PATH`
+NEW_PROJECT_NAME="";
+NEW_PROJECT_TEMPLATE="";
+
+function run_command_as_root(){
+COMMAND=$1;
+if [[ $(id -u) -eq 0 ]];
+then
+    run_command $COMMAND;
+elif command -v sudo;
+then
+    run_command "sudo $COMMAND";
+elif command -v su;
+then
+    run_commmand "su -c $COMMAND";
+else
+    print "Error: unable to run command $COMMAND as root";
+    exit 1;
+fi
+}
+
+
+#!/bin/bash
+function run_command(){
+COMMAND=$1;
+echo " "
+echo "Running command: $COMMAND";
+$COMMAND
+echo " "
+}
+
+
+function get_project_name {
+read -p "Project name eg microservice-thing? " choice
+case $choice in
+  "") get_project_name ;;
+  *) NEW_PROJECT_NAME="${choice}" ;;
+esac;
+}
+
+function get_project_template {
+echo "Available templates:"
+ls -1 $PROJECT_PATH/project-templates/
+echo " "
+read -p "Project Template [microservice-golang]?  " choice
+case $choice in
+  "microservice-golang") NEW_PROJECT_TEMPLATE="$choice" ;;
+  "storage") NEW_PROJECT_TEMPLATE="$choice" ;;
+  "") NEW_PROJECT_TEMPLATE="microservice-golang" ;;
+  *) get_project_template ;;
+esac;
+}
+
+# main:
+get_project_name;
+if test -f "$PROJECT_PATH/$NEW_PROJECT_NAME"; then 
+	echo "Project $NEW_PROJECT_NAME already exists.";
+	exit;
+fi
+
+get_project_template;
+run_command "cp -R $PROJECT_PATH/project-templates/$NEW_PROJECT_TEMPLATE/ $PROJECT_PATH/$NEW_PROJECT_NAME/";
+run_command "sed -i s/project-name/$NEW_PROJECT_NAME/g $PROJECT_PATH/$NEW_PROJECT_NAME/docker-compose.yml"
+run_command "sed -i s/project-name/$NEW_PROJECT_NAME/g $PROJECT_PATH/$NEW_PROJECT_NAME/docker-compose-stack.yml"

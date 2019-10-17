@@ -1,0 +1,5 @@
+version: "3"
+services:
+  project-name:
+    container_name: project-name
+    image: minio/minio

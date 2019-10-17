@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+SCRIPT=$(readlink -f $0)
+SCRIPT_PATH=`dirname $SCRIPT`
+PROJECT_PATH=`dirname $SCRIPT_PATH`
+cd $PROJECT_PATH
+echo $(cd $PROJECT_PATH &&  ls -d1 */)
+
+for D in $(cd $PROJECT_PATH &&  ls -d1 */)
+do
+	case $D in
+		"project-templates/" ) ;;
+		"bin/" ) ;;
+		*)
+			cd $PROJECT_PATH/$D
+		 	docker-compose -f docker-compose.yml build
+		 	cd $PROJECT_PATH
+     		;;
+     esac     	
+done
+

@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+SCRIPT=$(readlink -f $0)
+SCRIPT_PATH=`dirname $SCRIPT`
+PROJECT_PATH=`dirname $SCRIPT_PATH`
+for D in `ls -d1 */`
+do
+	case $D in
+		"project-templates/" ) ;;
+		"bin/" ) ;;
+		*)
+			docker stack ps $(echo $D | sed 's:/*$::')
+     		;;
+     esac  
+done
+
+docker stack ps proxy

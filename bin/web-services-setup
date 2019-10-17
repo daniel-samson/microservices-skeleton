@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+SCRIPT=$(readlink -f $0)
+SCRIPT_PATH=`dirname $SCRIPT`
+PROJECT_PATH=`dirname $SCRIPT_PATH`
+cd $SCRIPT_PATH
+# docker network create --driver overlay swarm
+docker stack deploy -c $PROJECT_PATH/docker-compose-stack-proxy.yml swarm
+# docker stack ps swarm

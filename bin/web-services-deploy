@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+SCRIPT=$(readlink -f $0)
+SCRIPT_PATH=`dirname $SCRIPT`
+PROJECT_PATH=`dirname $SCRIPT_PATH`
+
+
+for D in $(cd $PROJECT_PATH &&  ls -d1 */)
+do
+	case $D in
+		"project-templates/" ) ;;
+		"bin/" ) ;;
+		*)
+			cd $PROJECT_PATH/${D}
+		    docker stack deploy -c docker-compose-stack.yml $(echo $D | sed 's:/*$::')
+		    cd $PROJECT_PATH
+     		;;
+     esac     	
+done
+
