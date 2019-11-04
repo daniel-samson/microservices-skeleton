@@ -1,6 +1,6 @@
 ### Requirements
-- go
-- gofmt
+- modejs
+- npm
 
 ### Set up Development Environment
 
