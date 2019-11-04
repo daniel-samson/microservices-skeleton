@@ -12,7 +12,7 @@ do
 		"bin/" ) ;;
 		*)
 			cd $PROJECT_PATH/${D}
-		    docker stack deploy -c docker-compose-stack.yml $(echo $D | sed 's:/*$::')
+		    env $(cat .env | grep ^[A-Z] | xargs) docker stack deploy -c docker-compose-stack.yml $(echo $D | sed 's:/*$::')
 		    cd $PROJECT_PATH
      		;;
      esac     	

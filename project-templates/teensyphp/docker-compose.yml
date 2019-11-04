@@ -1,0 +1,24 @@
+version: "3"
+services:
+  project-name:
+    build: .
+    container_name: project-name
+    env_file: .env
+    environment:
+      APACHE_RUN_USER: $APACHE_RUN_USER
+      MYSQL_HOST: project-name-mariadb
+      MYSQL_PORT: $MYSQL_PORT
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+    volumes:
+      - ./microservice:/var/www/html
+  project-name-mariadb:
+    image: mariadb
+    container_name: project-name-mariadb
+    env_file: .env
+    environment:
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+    ports:
+      - $MYSQL_PORT:3306
+    volumes:
+      - /var/lib/docker_data/project-name-mariadb:/var/lib/mysql

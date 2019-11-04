@@ -1,0 +1,8 @@
+{
+    "name": "vendor/microservice",
+    "type": "project",
+    "minimum-stability": "dev",
+    "require": {
+        "daniel-samson/teensyphp": "dev-master"
+    }
+}

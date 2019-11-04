@@ -51,6 +51,7 @@ case $choice in
   "mux") NEW_PROJECT_TEMPLATE="$choice" ;;
   "storage") NEW_PROJECT_TEMPLATE="$choice" ;;
   "expressjs") NEW_PROJECT_TEMPLATE="$choice" ;;
+  "teensyphp") NEW_PROJECT_TEMPLATE="$choice" ;;
   "") NEW_PROJECT_TEMPLATE="microservice-golang" ;;
   *) get_project_template ;;
 esac;
