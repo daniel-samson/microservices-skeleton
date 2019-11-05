@@ -1,5 +1,5 @@
 ### Requirements
-- modejs
+- nodejs
 - npm
 
 ### Set up Development Environment
