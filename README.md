@@ -1,7 +1,7 @@
 Microservices Skeleton
 ====
 
-A set of scripts and templates to rapidly build a microservices application.
+A set of scripts and templates to build a microservices application rapidly.
 
 
 ### Requirements:
